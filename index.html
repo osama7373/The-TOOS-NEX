@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -195,10 +196,39 @@
 
 <section class="hero">
   <h1>تقارير التطوير والمقارنات</h1>
-  <p>مدونة رسمية توثق تطور لعبة The TOOS NEX مع تقارير تقنية وبصرية مستوحاة من أسلوب Godot 4.</p>
+  <p>مدونة رسمية توثق تطور لعبة The TOOS NEX مع تقارير تقنية وبصرية </p>
 </section>
 
 <div class="container">
+
+  <!-- ===== قائمة التقارير (نمط The TOOS NEX) ===== -->
+  <section class="post">
+    <h2>📚 تقارير التطوير</h2>
+    <div class="meta">تقارير طويلة ومفصلة</div>
+
+    <ul style="list-style:none;padding:0;margin:0;">
+      <li style="margin-bottom:20px;">
+        <a href="report-garden-v1-3.html" style="color:var(--accent);font-size:18px;text-decoration:none;">
+          مقارنة واقعية الحديقة – الإصدار 1.3
+        </a>
+        <div style="color:var(--muted);font-size:14px;">تحليل بصري وتقني طويل مع صور ومقارنات مباشرة</div>
+      </li>
+
+      <li style="margin-bottom:20px;">
+        <a href="report-water-system.html" style="color:var(--accent);font-size:18px;text-decoration:none;">
+          نظام المياه والبحيرة – من الإصدار السابق إلى الجديد
+        </a>
+        <div style="color:var(--muted);font-size:14px;">تحسينات الشيدر، الانعكاسات، والواقعية البيئية</div>
+      </li>
+
+      <li style="margin-bottom:20px;">
+        <a href="report-lighting.html" style="color:var(--accent);font-size:18px;text-decoration:none;">
+          الإضاءة والرعب البيئي في The TOOS NEX
+        </a>
+        <div style="color:var(--muted);font-size:14px;">كيف تؤثر الإضاءة على التوتر والخوف</div>
+      </li>
+    </ul>
+  </section>
 
   <!-- ===== آخر الأخبار ===== -->
   <section class="post">
@@ -216,17 +246,6 @@
     </ul>
   </section>
 
-  <!-- ===== الأخبار القديمة ===== -->
-  <section class="post">
-    <h2>🕒 الأخبار السابقة</h2>
-    <div class="meta">أرشيف التطوير</div>
-    <ul style="list-style:none;padding:0;margin:0;">
-      <li style="margin-bottom:10px;">الإصدار 1.2 – تحسين الإضاءة وإضافة أصوات الليل</li>
-      <li style="margin-bottom:10px;">الإصدار 1.1 – أول نسخة عامة للعبة</li>
-      <li style="margin-bottom:10px;">بداية المشروع – مرحلة الاختبارات المغلقة</li>
-    </ul>
-  </section>
-
   <!-- ===== تحميل اللعبة ===== -->
   <section class="post" style="text-align:center;">
     <h2>⬇️ تحميل اللعبة</h2>
@@ -235,47 +254,331 @@
     <a href="https://dl.itch.zone/upload2/game/4014407/15834817?GoogleAccessId=uploader@moonscript2.iam.gserviceaccount.com&Expires=1765815371&Signature=mi84lBAZVOF4RAQTjhtHeNjc%2B8joAy9sF1HixZEbkBn%2B7qH0kT4Lc2DtzWCyKep48Jzd9wqTOzEJcCJ3%2FYNvSwoyIfyH9se0%2BghWDkDo4tdYeAP%2FYiHZVDM3XF9mC7QluYpYKplAthU5EOUNDgXaqCh2VOADewqjUWOFtVumBvZMZdC%2BswINuWyOu6gg3obT63Wb0ow5Y24AmmdcPyHss2l1ZZZUeBT85p9s0AUz1QUcHJvJR1DpEaQ1DsH%2Fn82jatMN%2BTHmvi8kCyqlYtX9qJiGj8v6GeRoVVLYFOgLUB215%2B3ByqmP9B3fVLWdN7LaPxAtyk13n8ZWff8HHmmCxg==&hwsig=exp=1765815371~hmac=1f25593accea08455e137d5526c702561275680594774779590b15aaa46eab77" target="_blank" style="display:inline-block;margin-top:15px;padding:14px 30px;background:var(--accent);color:#000;text-decoration:none;border-radius:6px;font-weight:bold;">
       تحميل The TOOS NEX
     </a>
-    <p style="margin-top:10px;font-size:13px;color:var(--muted);">سيتم تحديث الرابط تلقائيًا مع كل إصدار جديد</p>
   </section>
-
-
-
-  <article class="post">
-    <h2>مقارنة واقعية الحديقة – الإصدار السابق vs الجديد</h2>
-    <div class="meta">تقرير تطوير · الإصدار 1.3</div>
-
-    <div class="toggle">
-      <button class="active" onclick="showBoth()">كلاهما</button>
-      <button onclick="showOld()">القديم</button>
-      <button onclick="showNew()">الجديد</button>
-    </div>
-
-    <div class="compare" id="compareArea">
-      <div class="compare-box old">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjykTnj25sM2zstLSdizJ-0_Tlh5OiTuSdqhHs60ODs9Pq9igy9w4pryngj_pCuFnlYzA9m9-MfM6jf7_EwfPY6fZk-iwbmYL2LLG9L0bBIog0wBA8QN5yE2h7uaRdalvq9TcprJl84eaOT3ENglz8JM8vK17WrxrksM1EbkMFbR11y6FtNP3H4nhD-3uI/s2412/Screenshot_%D9%A2%D9%A0%D9%A2%D9%A5-%D9%A1%D9%A2-%D9%A1%D9%A5-%D9%A1%D9%A5-%D9%A0%D9%A0-%D9%A5%D9%A1-%D9%A6%D9%A5_653f2d6f0c14415f40b50121f34f510c.jpg" alt="الحديقة – الإصدار السابق">
-        <div class="label">الإصدار السابق</div>
-      </div>
-      <div class="compare-box new">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi0x2fzntHSxR_cqNi9mGrQAWwnTn6ETypZvdsHDwZQ2FXHKIO9cmWbxgxjHMFtlsvQcWnMmNNmS-LCuqjxDNIEgkAexqkemZzfAYkHw4y6g9TSdDUEDe08s0b4sg1gxI6PBYG_CzphuYf9zf72_oi9aRhSJaqeP3B-3ftNzKp86Bf6mMkcTp_C5GvLqFk/s2412/Screenshot_%D9%A2%D9%A0%D9%A2%D9%A5-%D9%A1%D9%A2-%D9%A1%D9%A5-%D9%A1%D9%A5-%D9%A0%D9%A0-%D9%A1%D9%A1-%D9%A2%D9%A7_653f2d6f0c14415f40b50121f34f510c.jpg" alt="الحديقة – الإصدار الجديد">
-        <div class="label">الإصدار الجديد</div>
-      </div>
-    </div>
-
-    <p>الإصدار الجديد يقدم واقعية أعلى من خلال أرضية غير منتظمة، كثافة نباتية طبيعية، وإضاءة أكثر توترًا تخدم الرعب البيئي.</p>
-
-    <div class="gallery">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi0x2fzntHSxR_cqNi9mGrQAWwnTn6ETypZvdsHDwZQ2FXHKIO9cmWbxgxjHMFtlsvQcWnMmNNmS-LCuqjxDNIEgkAexqkemZzfAYkHw4y6g9TSdDUEDe08s0b4sg1gxI6PBYG_CzphuYf9zf72_oi9aRhSJaqeP3B-3ftNzKp86Bf6mMkcTp_C5GvLqFk/s2412/Screenshot_%D9%A2%D9%A0%D9%A2%D9%A5-%D9%A1%D9%A2-%D9%A1%D9%A5-%D9%A1%D9%A5-%D9%A0%D9%A0-%D9%A1%D9%A1-%D9%A2%D9%A7_653f2d6f0c14415f40b50121f34f510c.jpg" alt="لقطة إضافية">
-      <img src="https://i.imgur.com/GALLERY2.jpg" alt="لقطة إضافية">
-      <img src="https://i.imgur.com/GALLERY3.jpg" alt="لقطة إضافية">
-    </div>
-
-  </article>
 
 </div>
 
 <footer>
   © 2025 The TOOS NEX – جميع الحقوق محفوظة
 </footer>
+
+<!-- =============================
+قالب صفحة تقرير مستقل (انسخه كملف جديد)
+مثال: report-garden-v1-3.html
+============================= -->
+<!--
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تقرير: مقارنة واقعية الحديقة – الإصدار 1.3</title>
+  <link rel="stylesheet" href="style.css"> <!-- أو انسخ نفس الستايل -->
+</head>
+<body>
+<header>نفس الهيدر</header>
+<section class="hero">
+  <h1>مقارنة واقعية الحديقة – الإصدار 1.3</h1>
+  <p>تقرير تطوير طويل ومفصل بأسلوب The TOOS NEX</p>
+</section>
+<div class="container">
+  <article class="post">
+    <div class="meta">تقرير تطوير · ديسمبر 2025</div>
+    <p>تقرير مقارن عن واقعية الحديقة بين الإصدار السابق والإصدار الجديد
+
+مقدمة
+
+تُعد الحديقة من أهم البيئات المفتوحة في اللعبة، فهي ليست مجرد مساحة خضراء أو ممر خارجي، بل عنصر نفسي وسردي يؤثر بشكل مباشر على شعور اللاعب. الحديقة هي المكان الذي يُفترض أن يكون آمنًا، هادئًا، وربما جميلًا… لكن في ألعاب الرعب تحديدًا، يتحول هذا المفهوم رأسًا على عقب.
+في هذا التقرير سنقدّم مقارنة تفصيلية بين الحديقة في الإصدار السابق (الجهة اليسرى في الصورة) والحديقة في الإصدار الجديد (الجهة اليمنى)، مع التركيز على الواقعية البصرية، الإحساس بالمكان، والتأثير النفسي.
+
+أولًا: نظرة عامة على الحديقة في الإصدار السابق
+
+في الإصدار السابق، كانت الحديقة موجودة بوظيفتها الأساسية:
+مسار واضح، أرضية محددة، وحدود مرئية.
+الهدف الأساسي كان توجيه اللاعب من نقطة إلى أخرى دون تعقيد.
+
+خصائص الحديقة في الإصدار السابق:
+
+مسار مستقيم وواضح المعالم.
+
+أرضية ذات خامة بسيطة.
+
+توزيع نباتات محدود.
+
+إضاءة موحدة نسبيًا.
+
+تباين ضعيف بين الأرض والمحيط.
+
+يمكن وصف الحديقة في هذا الإصدار بأنها:
+
+حديقة “وظيفية” أكثر منها “واقعية”.
+
+ثانيًا: المشاكل الواقعية في الإصدار السابق
+
+1. الإحساس الاصطناعي بالمكان
+
+الحديقة بدت كأنها:
+
+ممر تم وضعه داخل مشهد.
+
+عنصر منفصل عن البيئة المحيطة.
+
+لم يكن هناك شعور بأن هذا المكان:
+
+تشكّل طبيعيًا.
+
+تعرّض للإهمال أو الزمن.
+
+2. ضعف التفاصيل الدقيقة
+
+الأرضية ناعمة أكثر من اللازم.
+
+غياب واضح لتفاوت الارتفاعات.
+
+النباتات لا تعكس العشوائية الطبيعية.
+
+3. محدودية التأثير النفسي
+
+الحديقة لم تكن:
+
+مقلقة.
+
+غامضة.
+
+أو مثيرة للتوجس.
+
+بل كانت أشبه بمسار إرشادي، لا يثير الشك.
+
+ثالثًا: دوافع تحسين الحديقة في الإصدار الجديد
+
+إعادة تصميم الحديقة جاءت نتيجة عدة عوامل مهمة:
+
+رفع مستوى الواقعية العامة للعبة
+بعد تحسين الغابة والمقبرة والماء، أصبح من الضروري أن تواكب الحديقة هذا التطور.
+
+تحويل الحديقة من ممر إلى تجربة
+اللاعب لا يجب أن “يمر” فقط، بل يجب أن “يشعر”.
+
+تعزيز الرعب البيئي
+الرعب لا يعتمد على الأعداء فقط، بل على الإحساس بالمكان.
+
+رابعًا: الحديقة في الإصدار الجديد – نظرة عامة
+
+في الإصدار الجديد، الحديقة لم تعد مسارًا واضحًا فقط، بل أصبحت:
+
+أكثر كثافة.
+
+أكثر فوضوية.
+
+أقرب للطبيعة الحقيقية.
+
+أبرز التغييرات:
+
+أرضية غير منتظمة.
+
+خامات أكثر تعقيدًا.
+
+تدرجات لونية طبيعية.
+
+اندماج أقوى مع الإضاءة والظلال.
+
+الحديقة الآن:
+
+تبدو وكأنها موجودة منذ سنوات، لا منذ لحظة تصميمها.
+
+خامسًا: التحليل البصري المقارن
+
+1. الأرضية (Terrain)
+
+الإصدار السابق:
+
+سطح شبه مسطح.
+
+خامة متكررة.
+
+إحساس صناعي واضح.
+
+الإصدار الجديد:
+
+تفاوت واضح في السطح.
+
+تفاصيل خشنة وغير متوقعة.
+
+الأرض تبدو رطبة، قديمة، ومستهلكة.
+
+هذا التغيير وحده:
+
+يرفع مستوى الواقعية بشكل كبير.
+
+يجعل حركة اللاعب أكثر توترًا.
+
+2. المسار
+
+في الإصدار السابق:
+
+المسار واضح جدًا.
+
+الحواف نظيفة ومحددة.
+
+في الإصدار الجديد:
+
+المسار مدمج مع الأرض.
+
+الحدود غير واضحة تمامًا.
+
+اللاعب يشعر أنه يشق طريقه بنفسه.
+
+وهذا يخلق:
+
+إحساسًا بالضياع.
+
+توترًا دائمًا أثناء التقدم.
+
+3. الغطاء النباتي
+
+الإصدار السابق:
+
+نباتات قليلة.
+
+توزيع منتظم.
+
+تكرار ملحوظ.
+
+الإصدار الجديد:
+
+كثافة نباتية أعلى.
+
+توزيع عشوائي طبيعي.
+
+اختلاف في الارتفاع والأشكال.
+
+النباتات الآن:
+
+تحجب الرؤية جزئيًا.
+
+تخلق ظلالًا غير مريحة.
+
+توحي بوجود حركة أو شيء مخفي.
+
+سادسًا: الإضاءة والظلال
+
+الإضاءة عنصر حاسم في الواقعية.
+
+الإصدار السابق:
+
+إضاءة عامة.
+
+ظلال ضعيفة.
+
+تباين منخفض.
+
+الإصدار الجديد:
+
+ظلال أعمق.
+
+تدرج طبيعي بين الضوء والظلام.
+
+مناطق مظلمة توحي بالخطر.
+
+الحديقة لم تعد:
+
+مضاءة بشكل مريح.
+بل أصبحت:
+
+منطقة غير آمنة بصريًا.
+
+سابعًا: التأثير النفسي على اللاعب
+
+الإصدار السابق:
+
+اللاعب يسير بثقة.
+
+لا يشعر بتهديد.
+
+التركيز على الوصول فقط.
+
+الإصدار الجديد:
+
+اللاعب يتباطأ.
+
+يراقب محيطه.
+
+يتوقع خطرًا في أي لحظة.
+
+وهنا تتحقق الواقعية الحقيقية:
+
+المكان نفسه يصبح مصدر قلق.
+
+ثامنًا: الاندماج مع العالم المحيط
+
+في الإصدار الجديد:
+
+الحديقة تبدو جزءًا من الغابة.
+
+لا يوجد فصل بصري واضح.
+
+الانتقال طبيعي وسلس.
+
+بينما في الإصدار السابق:
+
+الحديقة تبدو كمشهد منفصل.
+
+الانتقال حاد وغير عضوي.
+
+تاسعًا: الواقعية مقابل الأداء
+
+رغم زيادة التفاصيل:
+
+الأداء ما زال مستقرًا.
+
+لم يتم التضحية بجري اللعب.
+
+التحسينات محسوبة بعناية.
+
+وهذا يعكس:
+
+نضجًا في التصميم.
+
+فهمًا جيدًا للتوازن بين الجمال والأداء.
+
+اللمسة النهائية
+
+الحديقة في الإصدار الجديد ليست مجرد تحسين بصري، بل تحول جذري في الفلسفة التصميمية.
+انتقلت من:
+
+ممر إرشادي
+إلى:
+
+مساحة حية، غامضة، ومقلقة.
+
+هذا التحول يخدم:
+
+الواقعية.
+
+الرعب.
+
+والانغماس الكامل في العالم.
+
+يمكن القول بثقة:
+
+الإصدار الجديد جعل الحديقة:
+
+مكانًا لا تريد البقاء فيه…
+ولا تشعر بالأمان وأنت تمر به.
+
+كلمة أخيرة
+
+الاهتمام بالحديقة بهذا الشكل يثبت أن التطوير لم يعد يركز فقط على “الكبير والظاهر”، بل على التفاصيل الصامتة التي تصنع الفرق الحقيقي.
+وهذا بالضبط ما تحتاجه لعبة رعب ناجحة لذلك سنحاول فعل المستحيل لاضافة اشياء اكثر رعبا واكثر متعة.
+
+</p>
+    <!-- مقارنات / صور / فقرات -->
+  </article>
+</div>
+<footer>© 2025 The TOOS NEX</footer>
+</body>
+</html>
+-->
 
 <script>
   function showOld() {
