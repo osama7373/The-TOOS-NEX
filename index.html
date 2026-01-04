@@ -1,23 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The TOOS NEX – التقارير والتحديثات</title>
+  <title>The TOOS NEX – التقارير والتحديثات الاحترافية</title>
   <style>
     :root {
       --bg: #0b0e13;
       --panel: #121621;
       --accent: #3ddc84;
+      --accent-hover: #2ebf71;
       --text: #e6e6e6;
       --muted: #9aa4b2;
       --border: #1f2633;
+      --danger: #ff4d4d;
     }
 
     * {
       box-sizing: border-box;
       font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      scroll-behavior: smooth;
     }
 
     body {
@@ -25,157 +27,255 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.9;
+      overflow-x: hidden;
     }
 
+    
     header {
-      background: linear-gradient(180deg, #0f1420, #0b0e13);
+      background: rgba(15, 20, 32, 0.95);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 1000;
     }
 
     .header-inner {
       max-width: 1200px;
       margin: auto;
-      padding: 20px;
+      padding: 15px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .logo {
-      font-size: 20px;
-      font-weight: bold;
+      font-size: 24px;
+      font-weight: 800;
       color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     nav a {
       color: var(--text);
       text-decoration: none;
-      margin-left: 20px;
+      margin-right: 20px;
       font-size: 14px;
-      opacity: 0.9;
+      font-weight: 500;
+      transition: 0.3s;
     }
 
     nav a:hover {
       color: var(--accent);
     }
 
+    
     .hero {
-      max-width: 1200px;
-      margin: auto;
-      padding: 60px 20px 40px;
+      position: relative;
+      max-width: 100%;
+      margin: 0;
+      padding: 120px 20px 100px;
+      text-align: center;
+      background: 
+        linear-gradient(rgba(11,14,19,0.7), rgba(11,14,19,0.9)),
+        url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBiQqrMy0Zjb-uvIhtqJDi_zUYvYGDJzA0wJCtbuy_PNOhLgEPgpFvNqz8nbzsJYHzW_Gc9hIeyrlJhCuYqDkzi2O-MsQFw6CROleqHR4a3QIcAqSQPKFrs-dL0VhYpi5PTrmZ5LSpiTfY06aVVsfx-OF3rSr-jLPV4E-5_DEyZGcp937LU8S4RZvzJcA/s938/IMG_%D9%A2%D9%A0%D9%A2%D9%A5%D9%A1%D9%A2%D9%A1%D9%A7_%D9%A2%D9%A2%D9%A4%D9%A0%D9%A1%D9%A7.jpg") center / cover no-repeat;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .hero h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
+      font-size: clamp(28px, 5vw, 48px);
+      margin-bottom: 15px;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
 
     .hero p {
       color: var(--muted);
-      max-width: 700px;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      font-size: 18px;
+    }
+
+    
+    .btn-main {
+      padding: 12px 35px;
+      background: var(--accent);
+      color: #000;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: bold;
+      transition: 0.3s;
+      display: inline-block;
+      box-shadow: 0 4px 15px rgba(61, 220, 132, 0.3);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-main:hover {
+      background: var(--accent-hover);
+      transform: scale(1.05);
     }
 
     .container {
       max-width: 1200px;
       margin: auto;
-      padding: 20px;
+      padding: 40px 20px;
     }
 
+    
     .post {
       background: var(--panel);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 30px;
-      margin-bottom: 40px;
+      border-radius: 15px;
+      padding: 40px;
+      margin-bottom: 50px;
+      transition: 0.3s;
+    }
+
+    .post:hover {
+      border-color: var(--accent);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
 
     .post h2 {
       margin-top: 0;
-      font-size: 26px;
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
 
-    .post .meta {
-      font-size: 13px;
+    .meta {
+      font-size: 14px;
       color: var(--muted);
-      margin-bottom: 20px;
+      margin-bottom: 25px;
+      display: block;
+      border-right: 3px solid var(--accent);
+      padding-right: 10px;
     }
 
-    .toggle {
-      text-align: center;
-      margin-bottom: 20px;
+    
+    .toggle-controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 25px;
     }
 
-    .toggle button {
-      background: #0f1420;
+    .toggle-controls button {
+      background: #1f2633;
       border: 1px solid var(--border);
       color: var(--text);
-      padding: 8px 16px;
+      padding: 10px 20px;
       cursor: pointer;
-      margin: 0 5px;
-      border-radius: 4px;
+      border-radius: 8px;
+      transition: 0.3s;
     }
 
-    .toggle button.active {
+    .toggle-controls button.active {
       background: var(--accent);
       color: #000;
+      font-weight: bold;
     }
 
-    .compare {
+    .compare-container {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--border);
+    }
+
+    .compare-wrapper {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin: 30px 0;
+      gap: 5px;
     }
 
     .compare-box {
-      background: #0c111b;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
+      position: relative;
+      transition: 0.5s ease;
     }
 
     .compare-box img {
       width: 100%;
+      height: 400px;
+      object-fit: cover;
       display: block;
     }
 
-    .compare-box .label {
-      padding: 10px;
-      font-size: 14px;
-      background: #0f1420;
-      border-top: 1px solid var(--border);
+    .compare-label {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      background: rgba(0,0,0,0.7);
+      padding: 5px 15px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: var(--accent);
+    }
+
+    
+    .report-link {
+      background: #191f2d;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: 0.3s;
+      border-right: 4px solid transparent;
+      text-decoration: none;
+    }
+
+    .report-link:hover {
+      border-right-color: var(--accent);
+      background: #232a3b;
+      transform: translateX(-5px);
+    }
+
+    .report-info h3 { margin: 0; color: var(--accent); font-size: 18px; }
+    .report-info p { margin: 5px 0 0; color: var(--muted); font-size: 14px; }
+
+    
+    .countdown-timer {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .timer-box {
+      background: #0b0e13;
+      padding: 15px;
+      border-radius: 8px;
+      min-width: 80px;
       text-align: center;
-      color: var(--muted);
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 15px;
-      margin-top: 30px;
-    }
+    .timer-box span { font-size: 24px; font-weight: bold; display: block; color: var(--accent); }
+    .timer-box label { font-size: 12px; color: var(--muted); }
 
-    .gallery img {
-      width: 100%;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-    }
+
+    .hidden { display: none !important; }
+    .full-width { grid-template-columns: 1fr !important; }
 
     footer {
       border-top: 1px solid var(--border);
-      padding: 30px 20px;
+      padding: 50px 20px;
       text-align: center;
-      font-size: 13px;
-      color: var(--muted);
+      background: #090c11;
     }
 
-    @media (max-width: 800px) {
-      .compare {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 768px) {
+      .compare-wrapper { grid-template-columns: 1fr; }
+      .compare-box img { height: 250px; }
+      .header-inner { flex-direction: column; gap: 15px; }
     }
   </style>
 </head>
@@ -185,129 +285,225 @@
   <div class="header-inner">
     <div class="logo">The TOOS NEX</div>
     <nav>
-      <a href="#">الرئيسية</a>
-      <a href="#">الأخبار</a>
-      <a href="#">التقارير</a>
-      <a href="#">التحميل</a>
+      <a href="#home">الرئيسية</a>
+      <a href="#reports">التقارير</a>
+      <a href="#news">الأخبار</a>
+      <a href="#download">التحميل</a>
     </nav>
   </div>
 </header>
 
-<section class="hero">
-  <h1>تقارير التطوير والمقارنات</h1>
-  <p>مدونة رسمية توثق تطور لعبة The TOOS NEX مع تقارير تقنية وبصرية </p>
+<section class="hero" id="home">
+  <h1>مستقبل الرعب التقني</h1>
+  <p>استكشف كواليس تطوير The TOOS NEX. نوثق لك كل شيدر، كل إضاءة، وكل خطوة نحو الواقعية المطلقة.</p>
+  
+  <div class="countdown-timer" id="realTimer">
+    <div class="timer-box"><span id="days">00</span><label>يوم</label></div>
+    <div class="timer-box"><span id="hours">00</span><label>ساعة</label></div>
+    <div class="timer-box"><span id="mins">00</span><label>دقيقة</label></div>
+    <div class="timer-box"><span id="secs">00</span><label>ثانية</label></div>
+  </div>
+  
+  <br>
+  <a href="#download" class="btn-main">ابدأ التجربة الآن</a>
 </section>
 
 <div class="container">
 
-  <!-- ===== قائمة التقارير (نمط The TOOS NEX) ===== -->
+  <section class="post" id="reports">
+    <h2>📚 مركز تقارير التطوير</h2>
+    <span class="meta">تم التحديث: ديسمبر 2026</span>
+
+
+<div class="reports-list">
+      <a href="report-garden-v1-4.html" class="report-link">
+        <div class="report-info">
+          <h3>تقرير اصدار - 1.4RC3</h3>
+          <p>تقرير جديد حول التعديلات والاضافات الجديدة</p>
+        </div>
+        <span style="color:var(--accent)">←</span>
+      </a>
+
+    <div class="reports-list">
+      <a href="report-garden-v1-3.html" class="report-link">
+        <div class="report-info">
+          <h3>مقارنة واقعية الحديقة – الإصدار 1.3</h3>
+          <p>تحليل شامل للتحسينات البصرية والأشجار عالية الدقة.</p>
+        </div>
+        <span style="color:var(--accent)">←</span>
+      </a>
+
+      <a href="report-water-system.html" class="report-link">
+        <div class="report-info">
+          <h3>نظام المياه والبحيرة المتطور</h3>
+          <p>شرح تقنية الانعكاسات الحقيقية (SSR) في المحرك الجديد.</p>
+        </div>
+        <span style="color:var(--accent)">←</span>
+      </a>
+
+      <a href="report-lighting.html" class="report-link">
+        <div class="report-info">
+          <h3>الإضاءة والرعب البيئي</h3>
+          <p>كيف صممنا الإضاءة لتكون جزءاً من ميكانيكيات الخوف.</p>
+        </div>
+        <span style="color:var(--accent)">←</span>
+      </a>
+    </div>
+  </section>
+
   <section class="post">
-    <h2>📚 تقارير التطوير</h2>
-    <div class="meta">تقارير طويلة ومفصلة</div>
+    <h2>🖼️ مقارنة بصرية مباشرة</h2>
+    <p style="color:var(--muted)">استخدم الأزرار للتبديل بين النسخة القديمة والجديدة لمعاينة الفرق في الجودة.</p>
+    
+    <div class="toggle-controls">
+      <button onclick="viewMode('old')" id="btnOld">النسخة القديمة</button>
+      <button onclick="viewMode('new')" id="btnNew">النسخة الجديدة</button>
+      <button onclick="viewMode('both')" id="btnBoth" class="active">مقارنة جنباً لجنب</button>
+    </div>
 
+    <div class="compare-container">
+      <div class="compare-wrapper" id="compareWrapper">
+        <div class="compare-box" id="oldBox">
+          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBiQqrMy0Zjb-uvIhtqJDi_zUYvYGDJzA0wJCtbuy_PNOhLgEPgpFvNqz8nbzsJYHzW_Gc9hIeyrlJhCuYqDkzi2O-MsQFw6CROleqHR4a3QIcAqSQPKFrs-dL0VhYpi5PTrmZ5LSpiTfY06aVVsfx-OF3rSr-jLPV4E-5_DEyZGcp937LU8S4RZvzJcA/s938/IMG_%D9%A2%D9%A0%D9%A2%D9%A5%D9%A1%D9%A2%D9%A1%D9%A7_%D9%A2%D9%A2%D9%A4%D9%A0%D9%A1%D9%A7.jpg" alt="Old Version">
+          <div class="compare-label">الإصدار السابق (Legacy)</div>
+        </div>
+        <div class="compare-box" id="newBox">
+          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBiQqrMy0Zjb-uvIhtqJDi_zUYvYGDJzA0wJCtbuy_PNOhLgEPgpFvNqz8nbzsJYHzW_Gc9hIeyrlJhCuYqDkzi2O-MsQFw6CROleqHR4a3QIcAqSQPKFrs-dL0VhYpi5PTrmZ5LSpiTfY06aVVsfx-OF3rSr-jLPV4E-5_DEyZGcp937LU8S4RZvzJcA/s938/IMG_%D9%A2%D9%A0%D9%A2%D9%A5%D9%A1%D9%A2%D9%A1%D9%A7_%D9%A2%D9%A2%D9%A4%D9%A0%D9%A1%D9%A7.jpg" alt="New Version" style="filter: contrast(1.1) brightness(1.1) saturate(1.2);">
+          <div class="compare-label">إصدار NEX v1.3 (تحسين شيدر)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="post" id="news">
+    <h2>📰 آخر الأخبار والتنبيهات</h2>
+    <span class="meta">حالة الخادم: متصل ✅</span>
     <ul style="list-style:none;padding:0;margin:0;">
-      <li style="margin-bottom:20px;">
-        <a href="report-garden-v1-3.html" style="color:var(--accent);font-size:18px;text-decoration:none;">
-          مقارنة واقعية الحديقة – الإصدار 1.3
-        </a>
-        <div style="color:var(--muted);font-size:14px;">تحليل بصري وتقني طويل مع صور ومقارنات مباشرة</div>
+      <li style="background:#0b0e13; padding:15px; border-radius:8px; margin-bottom:15px; border-right:4px solid var(--accent);">
+        <strong style="color:var(--accent)">الإصدار 1.4RC3 متاح الان</strong><br>
+        <span style="color:var(--muted);font-size:14px;">تمت إضافة منطقة  جديدة «صرف الصحي» بالاضافة تم تحسين كرت الذاكرة 40%</span>
       </li>
-
-      <li style="margin-bottom:20px;">
-        <a href="report-water-system.html" style="color:var(--accent);font-size:18px;text-decoration:none;">
-          نظام المياه والبحيرة – من الإصدار السابق إلى الجديد
-        </a>
-        <div style="color:var(--muted);font-size:14px;">تحسينات الشيدر، الانعكاسات، والواقعية البيئية</div>
-      </li>
-
-      <li style="margin-bottom:20px;">
-        <a href="report-lighting.html" style="color:var(--accent);font-size:18px;text-decoration:none;">
-          الإضاءة والرعب البيئي في The TOOS NEX
-        </a>
-        <div style="color:var(--muted);font-size:14px;">كيف تؤثر الإضاءة على التوتر والخوف</div>
+      <li style="background:#0b0e13; padding:15px; border-radius:8px; margin-bottom:15px; border-right:4px solid var(--danger);">
+        <strong style="color:var(--danger)">تنبيه: خلل AI العدو</strong><br>
+        <span style="color:var(--muted);font-size:14px;">تم حل مشكلة العدو عدنا الى النسخة 4.5.1 من جودوت 4</span>
       </li>
     </ul>
   </section>
 
-  <!-- ===== آخر الأخبار ===== -->
-  <section class="post">
-    <h2>📰 آخر الأخبار</h2>
-    <div class="meta">تحديثات رسمية · مستمر</div>
-    <ul style="list-style:none;padding:0;margin:0;">
-      <li style="margin-bottom:15px;">
-        <strong>الإصدار 1.3 متاح الآن</strong><br>
-        <span style="color:var(--muted);font-size:14px;">تحسينات استقرار، توسعة الغابة، إضافة البحيرة وتحسينات بيئية.</span>
-      </li>
-      <li style="margin-bottom:15px;">
-        <strong>مشكلة هجوم العدو</strong><br>
-        <span style="color:var(--muted);font-size:14px;">خلل معروف مرتبط بـ Godot 4.6 وسيتم حله فور صدور النسخة المستقرة.</span>
-      </li>
-    </ul>
-  </section>
+  <section class="post" id="download" style="text-align:center; background: linear-gradient(145deg, #121621, #1a202e);">
+    <h2>⬇️ تحميل The TOOS NEX</h2>
+    <p>النسخة الحالية: 1.4 | حجم الملف: 506mb</p>
+    
+    <div style="margin: 10px 0; font-weight: bold; color: var(--accent);">
+      عدد التحميلات الكلي: <span id="downloadCount">1,240</span>
+    </div>
 
-  <!-- ===== تحميل اللعبة ===== -->
-  <section class="post" style="text-align:center;">
-    <h2>⬇️ تحميل اللعبة</h2>
-    <div class="meta">النسخة الحالية: 1.3</div>
-    <p>يمكنك تحميل اللعبة مباشرة وتجربة آخر تحديث بكل محتواه.</p>
-    <a href="https://dl.itch.zone/upload2/game/4014407/15852385?GoogleAccessId=uploader@moonscript2.iam.gserviceaccount.com&Expires=1765830191&Signature=fBG3dNUrxCrTdmUcwcxjs1BD8wrxzCUgFEICOvKfvFY8XkJy3ZoEPQ%2FkMpDW9B5j4A2q7YvTUApACMhNxxqRTAZgz6imuIdVV4fauD7uIMkkp6a2%2FwwStdzXoHLCXwkvV5ak%2F%2BIQG5vymiy%2FcXkbM5bVgMrhDe38vCLzHzVh4wDpxY1tPFHpCD32Fx6TaMx0L9GN4XsBADwpmJvSbtLS9HpNeIausaqdb0Y5czBBgCTA029nbMFXxLBnCsMgMsuwChdq49PISfub45cVl9fax%2Fc7swRmf99aba99dcl%2F9nXCOJf2EhzLvp2I8nrjIZf4zhSANqb3DfM6eSksMx%2BmWg==&hwsig=exp=1765830191~hmac=ed2422a13421cde360e18314ce00f84bb47660d3cde684b93f83feabb87e4b06" target="_blank" style="display:inline-block;margin-top:15px;padding:14px 30px;background:var(--accent);color:#000;text-decoration:none;border-radius:6px;font-weight:bold;">
-      تحميل The TOOS NEX
+    <div style="margin: 20px 0;">
+       <span style="background:rgba(61,220,132,0.1); color:var(--accent); padding:5px 15px; border-radius:20px; font-size:12px;">android 9/15 المدعوم</span>
+    </div>
+    
+    <a href="https://github.com/osama7373/The-TOOS-NEX/releases/latest/download/The.TOOS.NEX-v1.4.RC3.apk
+" onclick="incrementDownload()" target="_blank" class="btn-main" style="padding: 18px 50px; font-size: 20px;">
+       تحميل اللعبة (Direct Link)
     </a>
+    
+    <p style="margin-top:20px; font-size:12px; color:var(--muted);">عبر تحميلك للعبة، أنت توافق على شروط الاستخدام وسياسة الخصوصية.</p>
   </section>
 
 </div>
 
 <footer>
-  © 2025 The TOOS NEX – جميع الحقوق محفوظة
+  <div style="margin-bottom:20px;">
+    <span class="logo">The TOOS NEX</span>
+  </div>
+  <p>© 2025-2026 فريق تطوير The TOOS NEX – جميع الحقوق محفوظة.</p>
+  <div style="font-size: 18px;">
+    <a href="#" style="color:var(--muted); margin:0 10px;">Twitter</a>
+    <a href="https://www.instagram.com/the_toos_nex?igsh=amdxMGQ2Y2R1YWF4" style="color:var(--muted); margin:0 10px;">Instagram</a>
+    <a href="https://youtube.com/@fghjjhhn1603?si=EAW7GHnMRNNIwMMQ" style="color:var(--muted); margin:0 10px;">YouTube</a>
+  </div>
 </footer>
 
-<!-- =============================
-قالب صفحة تقرير مستقل (انسخه كملف جديد)
-مثال: report-garden-v1-3.html
-============================= -->
-<!--
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>تقرير: مقارنة واقعية الحديقة – الإصدار 1.3</title>
-  <link rel="stylesheet" href="style.css"> <!-- أو انسخ نفس الستايل -->
-</head>
-<body>
-<header>نفس الهيدر</header>
-<section class="hero">
-  <h1></h1>
-  <p></p>
-</section>
-<div class="container">
-  <article class="post">
-    <div class="meta"></div>
-    <p></p>
-    <!-- مقارنات / صور / فقرات -->
-  </article>
-</div>
-<footer>© 2025 The TOOS NEX</footer>
-</body>
-</html>
--->
-
 <script>
-  function showOld() {
-    document.querySelector('.new').style.display = 'none';
-    document.querySelector('.old').style.display = 'block';
+
+  function viewMode(mode) {
+    const oldBox = document.getElementById('oldBox');
+    const newBox = document.getElementById('newBox');
+    const wrapper = document.getElementById('compareWrapper');
+    const buttons = document.querySelectorAll('.toggle-controls button');
+    
+    buttons.forEach(btn => btn.classList.remove('active'));
+
+    if (mode === 'old') {
+      oldBox.classList.remove('hidden');
+      newBox.classList.add('hidden');
+      wrapper.classList.add('full-width');
+      document.getElementById('btnOld').classList.add('active');
+    } else if (mode === 'new') {
+      oldBox.classList.add('hidden');
+      newBox.classList.remove('hidden');
+      wrapper.classList.add('full-width');
+      document.getElementById('btnNew').classList.add('active');
+    } else {
+      oldBox.classList.remove('hidden');
+      newBox.classList.remove('hidden');
+      wrapper.classList.remove('full-width');
+      document.getElementById('btnBoth').classList.add('active');
+    }
   }
 
-  function showNew() {
-    document.querySelector('.old').style.display = 'none';
-    document.querySelector('.new').style.display = 'block';
+  
+  const targetDate = new Date("January 31, 2026 23:59:59").getTime();
+
+  function updateRealTimer() {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if (diff > 0) {
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('days').innerText = d.toString().padStart(2, '0');
+      document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+      document.getElementById('mins').innerText = m.toString().padStart(2, '0');
+      document.getElementById('secs').innerText = s.toString().padStart(2, '0');
+    } else {
+      document.getElementById('realTimer').innerHTML = "<h3 style='color:var(--accent)'>اللعبة متوفرة الآن!</h3>";
+    }
+  }
+  setInterval(updateRealTimer, 1000);
+  updateRealTimer();
+
+
+  let downloads = localStorage.getItem('toosNexDownloads') || 1240;
+  document.getElementById('downloadCount').innerText = parseInt(downloads).toLocaleString();
+
+  function incrementDownload() {
+    downloads = parseInt(downloads) + 1;
+    localStorage.setItem('toosNexDownloads', downloads);
+    document.getElementById('downloadCount').innerText = downloads.toLocaleString();
   }
 
-  function showBoth() {
-    document.querySelector('.old').style.display = 'block';
-    document.querySelector('.new').style.display = 'block';
-  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.post').forEach(post => {
+    post.style.opacity = '0';
+    post.style.transform = 'translateY(30px)';
+    post.style.transition = '0.6s ease-out';
+    observer.observe(post);
+  });
 </script>
 
 </body>
 </html>
+
