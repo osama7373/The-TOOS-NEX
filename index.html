@@ -14,6 +14,7 @@
       --muted: #9aa4b2;
       --border: #1f2633;
       --danger: #ff4d4d;
+      --old-status: #3498db;
     }
 
     * {
@@ -22,15 +23,69 @@
       scroll-behavior: smooth;
     }
 
+    /* تأثير الكشّاف (Flashlight Cursor) */
+    .flashlight {
+      fixed: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9998;
+      background: radial-gradient(circle 150px at var(--x, 50%) var(--y, 50%), rgba(61, 220, 132, 0.05) 0%, rgba(0,0,0,0.3) 100%);
+      display: block;
+      position: fixed;
+    }
+
     body {
       margin: 0;
       background: var(--bg);
+      background-image: 
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 50px 50px;
       color: var(--text);
       line-height: 1.9;
       overflow-x: hidden;
+      cursor: crosshair;
     }
 
-    
+    body::after {
+      content: " ";
+      display: block;
+      position: fixed;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                  linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+      z-index: 9999;
+      background-size: 100% 4px, 3px 100%;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    /* شريط الطوارئ */
+    .emergency-bar {
+      background: var(--danger);
+      color: #000;
+      font-weight: bold;
+      font-size: 12px;
+      padding: 5px 0;
+      text-align: center;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+      z-index: 1001;
+    }
+    .marquee-content {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee-scroll 20s linear infinite;
+    }
+    @keyframes marquee-scroll {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-100%, 0); }
+    }
+
     header {
       background: rgba(15, 20, 32, 0.95);
       backdrop-filter: blur(10px);
@@ -66,11 +121,8 @@
       transition: 0.3s;
     }
 
-    nav a:hover {
-      color: var(--accent);
-    }
+    nav a:hover { color: var(--accent); }
 
-    
     .hero {
       position: relative;
       max-width: 100%;
@@ -81,6 +133,7 @@
         linear-gradient(rgba(11,14,19,0.7), rgba(11,14,19,0.9)),
         url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBiQqrMy0Zjb-uvIhtqJDi_zUYvYGDJzA0wJCtbuy_PNOhLgEPgpFvNqz8nbzsJYHzW_Gc9hIeyrlJhCuYqDkzi2O-MsQFw6CROleqHR4a3QIcAqSQPKFrs-dL0VhYpi5PTrmZ5LSpiTfY06aVVsfx-OF3rSr-jLPV4E-5_DEyZGcp937LU8S4RZvzJcA/s938/IMG_%D9%A2%D9%A0%D9%A2%D9%A5%D9%A1%D9%A2%D9%A1%D9%A7_%D9%A2%D9%A2%D9%A4%D9%A0%D9%A1%D9%A7.jpg") center / cover no-repeat;
       animation: fadeIn 1.5s ease-out;
+      box-shadow: inset 0 0 150px rgba(0,0,0,0.9);
     }
 
     @keyframes fadeIn {
@@ -101,7 +154,6 @@
       font-size: 18px;
     }
 
-    
     .btn-main {
       padding: 12px 35px;
       background: var(--accent);
@@ -114,20 +166,29 @@
       box-shadow: 0 4px 15px rgba(61, 220, 132, 0.3);
       cursor: pointer;
       border: none;
+      animation: pulseBtn 2s infinite;
+    }
+
+    @keyframes pulseBtn {
+      0% { box-shadow: 0 0 0 0 rgba(61, 220, 132, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(61, 220, 132, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(61, 220, 132, 0); }
     }
 
     .btn-main:hover {
       background: var(--accent-hover);
       transform: scale(1.05);
+      animation: none;
     }
 
     .container {
       max-width: 1200px;
       margin: auto;
       padding: 40px 20px;
+      position: relative;
+      z-index: 10;
     }
 
-    
     .post {
       background: var(--panel);
       border: 1px solid var(--border);
@@ -135,6 +196,7 @@
       padding: 40px;
       margin-bottom: 50px;
       transition: 0.3s;
+      backdrop-filter: blur(5px);
     }
 
     .post:hover {
@@ -150,6 +212,20 @@
       gap: 15px;
     }
 
+    .post h2:hover {
+      animation: glitch 0.3s linear infinite;
+      color: #fff;
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
     .meta {
       font-size: 14px;
       color: var(--muted);
@@ -159,7 +235,6 @@
       padding-right: 10px;
     }
 
-    
     .toggle-controls {
       display: flex;
       justify-content: center;
@@ -219,30 +294,75 @@
       color: var(--accent);
     }
 
-    
     .report-link {
       background: #191f2d;
-      padding: 20px;
-      border-radius: 10px;
+      padding: 15px 20px;
+      border-radius: 12px;
       margin-bottom: 15px;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
-      transition: 0.3s;
-      border-right: 4px solid transparent;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid var(--border);
       text-decoration: none;
+      gap: 15px;
+      position: relative;
+      overflow: hidden;
     }
 
     .report-link:hover {
       border-right-color: var(--accent);
       background: #232a3b;
-      transform: translateX(-5px);
+      transform: scale(1.01) translateX(-5px);
+      box-shadow: 0 5px 15px rgba(61, 220, 132, 0.1);
     }
 
-    .report-info h3 { margin: 0; color: var(--accent); font-size: 18px; }
+    .status-badge {
+      position: absolute;
+      top: 0;
+      left: 20px;
+      padding: 2px 12px;
+      font-size: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      color: #000;
+      z-index: 2;
+    }
+
+    .status-new { background: var(--accent); }
+    .status-old { background: var(--old-status); color: #fff; }
+
+    .report-img {
+      width: 75px;
+      height: 75px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+      filter: grayscale(20%);
+      transition: 0.3s ease;
+    }
+
+    .report-link:hover .report-img {
+      filter: grayscale(0%);
+      border-color: var(--accent);
+      transform: rotate(-2deg);
+    }
+
+    .report-info { flex-grow: 1; }
+    .report-info h3 { margin: 0; color: var(--accent); font-size: 18px; transition: 0.3s; }
     .report-info p { margin: 5px 0 0; color: var(--muted); font-size: 14px; }
 
-    
+    .report-link span {
+      transition: 0.3s;
+    }
+    .report-link:hover span {
+      transform: translateX(-5px);
+      color: #fff !important;
+    }
+
     .countdown-timer {
       display: flex;
       justify-content: center;
@@ -261,25 +381,71 @@
     .timer-box span { font-size: 24px; font-weight: bold; display: block; color: var(--accent); }
     .timer-box label { font-size: 12px; color: var(--muted); }
 
-
     .hidden { display: none !important; }
     .full-width { grid-template-columns: 1fr !important; }
+
+    /* لوحة الأوامر (Terminal Console) */
+    .terminal-toggle {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10001;
+      font-weight: bold;
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    #terminal-box {
+      position: fixed;
+      bottom: 80px;
+      left: 20px;
+      width: 300px;
+      height: 200px;
+      background: rgba(0, 0, 0, 0.9);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-family: 'Courier New', Courier, monospace;
+      padding: 10px;
+      font-size: 12px;
+      overflow-y: auto;
+      display: none;
+      z-index: 10000;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
 
     footer {
       border-top: 1px solid var(--border);
       padding: 50px 20px;
       text-align: center;
       background: #090c11;
+      position: relative;
+      z-index: 10;
     }
 
     @media (max-width: 768px) {
       .compare-wrapper { grid-template-columns: 1fr; }
       .compare-box img { height: 250px; }
       .header-inner { flex-direction: column; gap: 15px; }
+      #terminal-box { width: 90%; left: 5%; }
     }
   </style>
 </head>
-<body>
+<body onmousemove="updateFlashlight(event)">
+
+<div class="flashlight" id="flashlight"></div>
+
+<div class="emergency-bar">
+  <div class="marquee-content">
+    WARNING: SYSTEM BREACH DETECTED... SEWER SECTOR ACCESS RESTRICTED... UNKNOWN ENTITY SPOTTED... RE-OPTIMIZING MEMORY CARD (40% GAIN)... CONNECTING TO GODOT ENGINE 4.5.1...
+  </div>
+</div>
 
 <header>
   <div class="header-inner">
@@ -312,11 +478,22 @@
 
   <section class="post" id="reports">
     <h2>📚 مركز تقارير التطوير</h2>
-    <span class="meta">تم التحديث: ديسمبر 2026</span>
+    <span class="meta">تم التحديث: فبراير 2026</span>
 
+    <div class="reports-list">
+      <a href="report-v1-5-stable.html" class="report-link">
+        <div class="status-badge status-new">جديد</div>
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBiQqrMy0Zjb-uvIhtqJDi_zUYvYGDJzA0wJCtbuy_PNOhLgEPgpFvNqz8nbzsJYHzW_Gc9hIeyrlJhCuYqDkzi2O-MsQFw6CROleqHR4a3QIcAqSQPKFrs-dL0VhYpi5PTrmZ5LSpiTfY06aVVsfx-OF3rSr-jLPV4E-5_DEyZGcp937LU8S4RZvzJcA/s938/IMG_%D9%A2%D9%A0%D9%A2%D9%A5%D9%A1%D9%A2%D9%A1%D9%A7_%D9%A2%D9%A2%D9%A4%D9%A0%D9%A1%D9%A7.jpg" alt="1.5" class="report-img">
+        <div class="report-info">
+          <h3>تقرير اصدار - 1.5</h3>
+          <p>الاستقرار والتحول – الإصدار 1.5 المستقر</p>
+        </div>
+        <span style="color:var(--accent)">←</span>
+      </a>
 
-<div class="reports-list">
       <a href="report-garden-v1-4.html" class="report-link">
+        <div class="status-badge status-old">قديم</div>
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBiQqrMy0Zjb-uvIhtqJDi_zUYvYGDJzA0wJCtbuy_PNOhLgEPgpFvNqz8nbzsJYHzW_Gc9hIeyrlJhCuYqDkzi2O-MsQFw6CROleqHR4a3QIcAqSQPKFrs-dL0VhYpi5PTrmZ5LSpiTfY06aVVsfx-OF3rSr-jLPV4E-5_DEyZGcp937LU8S4RZvzJcA/s938/IMG_%D9%A2%D9%A0%D9%A2%D9%A5%D9%A1%D9%A2%D9%A1%D9%A7_%D9%A2%D9%A2%D9%A4%D9%A0%D9%A1%D9%A7.jpg" alt="1.4" class="report-img">
         <div class="report-info">
           <h3>تقرير اصدار - 1.4RC3</h3>
           <p>تقرير جديد حول التعديلات والاضافات الجديدة</p>
@@ -324,8 +501,9 @@
         <span style="color:var(--accent)">←</span>
       </a>
 
-    <div class="reports-list">
       <a href="report-garden-v1-3.html" class="report-link">
+        <div class="status-badge status-old">قديم</div>
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBiQqrMy0Zjb-uvIhtqJDi_zUYvYGDJzA0wJCtbuy_PNOhLgEPgpFvNqz8nbzsJYHzW_Gc9hIeyrlJhCuYqDkzi2O-MsQFw6CROleqHR4a3QIcAqSQPKFrs-dL0VhYpi5PTrmZ5LSpiTfY06aVVsfx-OF3rSr-jLPV4E-5_DEyZGcp937LU8S4RZvzJcA/s938/IMG_%D9%A2%D9%A0%D9%A2%D9%A5%D9%A1%D9%A2%D9%A1%D9%A7_%D9%A2%D9%A2%D9%A4%D9%A0%D9%A1%D9%A7.jpg" alt="1.3" class="report-img">
         <div class="report-info">
           <h3>مقارنة واقعية الحديقة – الإصدار 1.3</h3>
           <p>تحليل شامل للتحسينات البصرية والأشجار عالية الدقة.</p>
@@ -334,6 +512,8 @@
       </a>
 
       <a href="report-water-system.html" class="report-link">
+        <div class="status-badge status-old">قديم</div>
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBiQqrMy0Zjb-uvIhtqJDi_zUYvYGDJzA0wJCtbuy_PNOhLgEPgpFvNqz8nbzsJYHzW_Gc9hIeyrlJhCuYqDkzi2O-MsQFw6CROleqHR4a3QIcAqSQPKFrs-dL0VhYpi5PTrmZ5LSpiTfY06aVVsfx-OF3rSr-jLPV4E-5_DEyZGcp937LU8S4RZvzJcA/s938/IMG_%D9%A2%D9%A0%D9%A2%D9%A5%D9%A1%D9%A2%D9%A1%D9%A7_%D9%A2%D9%A2%D9%A4%D9%A0%D9%A1%D9%A7.jpg" alt="Water" class="report-img">
         <div class="report-info">
           <h3>نظام المياه والبحيرة المتطور</h3>
           <p>شرح تقنية الانعكاسات الحقيقية (SSR) في المحرك الجديد.</p>
@@ -342,6 +522,8 @@
       </a>
 
       <a href="report-lighting.html" class="report-link">
+        <div class="status-badge status-old">قديم</div>
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBiQqrMy0Zjb-uvIhtqJDi_zUYvYGDJzA0wJCtbuy_PNOhLgEPgpFvNqz8nbzsJYHzW_Gc9hIeyrlJhCuYqDkzi2O-MsQFw6CROleqHR4a3QIcAqSQPKFrs-dL0VhYpi5PTrmZ5LSpiTfY06aVVsfx-OF3rSr-jLPV4E-5_DEyZGcp937LU8S4RZvzJcA/s938/IMG_%D9%A2%D9%A0%D9%A2%D9%A5%D9%A1%D9%A2%D9%A1%D9%A7_%D9%A2%D9%A2%D9%A4%D9%A0%D9%A1%D9%A7.jpg" alt="Lighting" class="report-img">
         <div class="report-info">
           <h3>الإضاءة والرعب البيئي</h3>
           <p>كيف صممنا الإضاءة لتكون جزءاً من ميكانيكيات الخوف.</p>
@@ -353,8 +535,6 @@
 
   <section class="post">
     <h2>🖼️ مقارنة بصرية مباشرة</h2>
-    <p style="color:var(--muted)">استخدم الأزرار للتبديل بين النسخة القديمة والجديدة لمعاينة الفرق في الجودة.</p>
-    
     <div class="toggle-controls">
       <button onclick="viewMode('old')" id="btnOld">النسخة القديمة</button>
       <button onclick="viewMode('new')" id="btnNew">النسخة الجديدة</button>
@@ -381,7 +561,7 @@
     <ul style="list-style:none;padding:0;margin:0;">
       <li style="background:#0b0e13; padding:15px; border-radius:8px; margin-bottom:15px; border-right:4px solid var(--accent);">
         <strong style="color:var(--accent)">الإصدار 1.4RC3 متاح الان</strong><br>
-        <span style="color:var(--muted);font-size:14px;">تمت إضافة منطقة  جديدة «صرف الصحي» بالاضافة تم تحسين كرت الذاكرة 40%</span>
+        <span style="color:var(--muted);font-size:14px;">تمت إضافة منطقة جديدة «صرف الصحي» بالاضافة تم تحسين كرت الذاكرة 40%</span>
       </li>
       <li style="background:#0b0e13; padding:15px; border-radius:8px; margin-bottom:15px; border-right:4px solid var(--danger);">
         <strong style="color:var(--danger)">تنبيه: خلل AI العدو</strong><br>
@@ -392,25 +572,17 @@
 
   <section class="post" id="download" style="text-align:center; background: linear-gradient(145deg, #121621, #1a202e);">
     <h2>⬇️ تحميل The TOOS NEX</h2>
-    <p>النسخة الحالية: 1.4 | حجم الملف: 506mb</p>
-    
     <div style="margin: 10px 0; font-weight: bold; color: var(--accent);">
       عدد التحميلات الكلي: <span id="downloadCount">1,240</span>
     </div>
-
-    <div style="margin: 20px 0;">
-       <span style="background:rgba(61,220,132,0.1); color:var(--accent); padding:5px 15px; border-radius:20px; font-size:12px;">android 9/15 المدعوم</span>
-    </div>
-    
-    <a href="https://github.com/osama7373/The-TOOS-NEX/releases/latest/download/The.TOOS.NEX-v1.4.RC3.apk
-" onclick="incrementDownload()" target="_blank" class="btn-main" style="padding: 18px 50px; font-size: 20px;">
+    <a href="https://github.com/osama7373/The-TOOS-NEX/releases/latest/download/The.TOOS.NEX-v1.5.stable.apk" onclick="incrementDownload()" target="_blank" class="btn-main" style="padding: 18px 50px; font-size: 20px;">
        تحميل اللعبة (Direct Link)
     </a>
-    
-    <p style="margin-top:20px; font-size:12px; color:var(--muted);">عبر تحميلك للعبة، أنت توافق على شروط الاستخدام وسياسة الخصوصية.</p>
   </section>
-
 </div>
+
+<button class="terminal-toggle" onclick="toggleTerminal()">>_</button>
+<div id="terminal-box"></div>
 
 <footer>
   <div style="margin-bottom:20px;">
@@ -418,74 +590,88 @@
   </div>
   <p>© 2025-2026 فريق تطوير The TOOS NEX – جميع الحقوق محفوظة.</p>
   <div style="font-size: 18px;">
-    <a href="#" style="color:var(--muted); margin:0 10px;">Twitter</a>
-    <a href="https://www.instagram.com/the_toos_nex?igsh=amdxMGQ2Y2R1YWF4" style="color:var(--muted); margin:0 10px;">Instagram</a>
     <a href="https://youtube.com/@fghjjhhn1603?si=EAW7GHnMRNNIwMMQ" style="color:var(--muted); margin:0 10px;">YouTube</a>
   </div>
 </footer>
 
 <script>
+  // تحديث الكشّاف
+  function updateFlashlight(e) {
+    const flashlight = document.getElementById('flashlight');
+    flashlight.style.setProperty('--x', e.clientX + 'px');
+    flashlight.style.setProperty('--y', e.clientY + 'px');
+  }
 
+  // لوحة الأوامر
+  const terminal = document.getElementById('terminal-box');
+  const messages = [
+    "> Initializing TOOS_NEX_OS...",
+    "> Secure connection established.",
+    "> Checking Sewer Sector status... [LOCKED]",
+    "> AI Integrity: 98.4%",
+    "> Version v1.5 stable ready for deployment.",
+    "> WARNING: Unknown entity detected in background process..."
+  ];
+  let msgIndex = 0;
+
+  function toggleTerminal() {
+    terminal.style.display = terminal.style.display === 'block' ? 'none' : 'block';
+    if(terminal.innerHTML === "") startTyping();
+  }
+
+  function startTyping() {
+    if(msgIndex < messages.length) {
+      terminal.innerHTML += messages[msgIndex] + "<br>";
+      terminal.scrollTop = terminal.scrollHeight;
+      msgIndex++;
+      setTimeout(startTyping, 1500);
+    }
+  }
+
+  // الوظائف السابقة
   function viewMode(mode) {
     const oldBox = document.getElementById('oldBox');
     const newBox = document.getElementById('newBox');
     const wrapper = document.getElementById('compareWrapper');
     const buttons = document.querySelectorAll('.toggle-controls button');
-    
     buttons.forEach(btn => btn.classList.remove('active'));
 
     if (mode === 'old') {
-      oldBox.classList.remove('hidden');
-      newBox.classList.add('hidden');
-      wrapper.classList.add('full-width');
-      document.getElementById('btnOld').classList.add('active');
+      oldBox.classList.remove('hidden'); newBox.classList.add('hidden');
+      wrapper.classList.add('full-width'); document.getElementById('btnOld').classList.add('active');
     } else if (mode === 'new') {
-      oldBox.classList.add('hidden');
-      newBox.classList.remove('hidden');
-      wrapper.classList.add('full-width');
-      document.getElementById('btnNew').classList.add('active');
+      oldBox.classList.add('hidden'); newBox.classList.remove('hidden');
+      wrapper.classList.add('full-width'); document.getElementById('btnNew').classList.add('active');
     } else {
-      oldBox.classList.remove('hidden');
-      newBox.classList.remove('hidden');
-      wrapper.classList.remove('full-width');
-      document.getElementById('btnBoth').classList.add('active');
+      oldBox.classList.remove('hidden'); newBox.classList.remove('hidden');
+      wrapper.classList.remove('full-width'); document.getElementById('btnBoth').classList.add('active');
     }
   }
 
-  
-  const targetDate = new Date("January 31, 2026 23:59:59").getTime();
-
+  const targetDate = new Date("February30, 2026 23:59:59").getTime();
   function updateRealTimer() {
     const now = new Date().getTime();
     const diff = targetDate - now;
-
     if (diff > 0) {
       const d = Math.floor(diff / (1000 * 60 * 60 * 24));
       const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const s = Math.floor((diff % (1000 * 60)) / 1000);
-
       document.getElementById('days').innerText = d.toString().padStart(2, '0');
       document.getElementById('hours').innerText = h.toString().padStart(2, '0');
       document.getElementById('mins').innerText = m.toString().padStart(2, '0');
       document.getElementById('secs').innerText = s.toString().padStart(2, '0');
-    } else {
-      document.getElementById('realTimer').innerHTML = "<h3 style='color:var(--accent)'>اللعبة متوفرة الآن!</h3>";
     }
   }
   setInterval(updateRealTimer, 1000);
-  updateRealTimer();
-
 
   let downloads = localStorage.getItem('toosNexDownloads') || 1240;
   document.getElementById('downloadCount').innerText = parseInt(downloads).toLocaleString();
-
   function incrementDownload() {
     downloads = parseInt(downloads) + 1;
     localStorage.setItem('toosNexDownloads', downloads);
     document.getElementById('downloadCount').innerText = downloads.toLocaleString();
   }
-
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -506,4 +692,3 @@
 
 </body>
 </html>
-
